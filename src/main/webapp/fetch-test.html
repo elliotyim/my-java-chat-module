@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="txt"/>
+  <input type="file" id="file"/>
+  <input type="button" id="btn" value="button"/>
+  
+  <script>
+    let button = document.getElementById('btn');
+    button.addEventListener('click', () => {
+      let formData = new FormData();
+      let text = document.getElementById('txt').value;
+      let fileField = document.getElementById('file');
+
+      formData.append('text', text);
+      formData.append('file', fileField.files[0]);
+
+      fetch('/app/test', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => {return response.json()})
+        .then(myJson => {
+          console.log(myJson);
+        });
+    });
+  </script>
+</body>
+</html>

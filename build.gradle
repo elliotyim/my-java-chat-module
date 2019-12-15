@@ -1,21 +1,54 @@
 plugins {
-    id 'java'
+  id 'java'
     
-    id 'war'
-    id 'eclipse-wtp'
+  id 'war'
+  id 'eclipse-wtp'
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+  options.encoding = 'UTF-8'
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
 }
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
-    implementation 'com.google.guava:guava:28.0-jre'
-    testImplementation 'junit:junit:4.12'
+  implementation 'com.google.guava:guava:28.0-jre'
+  testImplementation 'junit:junit:4.12'
+  
+  // Spring Web MVC
+  compile group: 'org.springframework', name: 'spring-webmvc', version: '5.2.2.RELEASE'
+  
+  // Spring Web Socket
+  compile group: 'org.springframework', name: 'spring-websocket', version: '5.2.2.RELEASE'
+  
+  // Spring JDBC
+  compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.2.RELEASE'
+  
+  // MariaDB JDBC
+  compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.2'
+  
+  // Mybatis
+  compile group: 'org.mybatis', name: 'mybatis', version: '3.5.3'
+  
+  // Mybatis-Spring
+  compile group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.3'
+  
+  // Log4j Core
+  compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+  
+  // Apache Http Client
+  compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+  
+  // Servlet API
+  providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+  
+  // Jackson Databind
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.10'
+  
+  // Commons Fileupload
+  compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 }
