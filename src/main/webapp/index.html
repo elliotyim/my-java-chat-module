@@ -7,16 +7,25 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="data"></div>
   <textarea id="textarea" cols="30" rows="10"></textarea><br/>
   <input type="button" id="sendBtn" value="전송">
 
-  <div id="data"></div>
-
   <script>
-    let textarea = document.getElementById('textarea');
     let sendBtn = document.getElementById('sendBtn');
-
-    let socket = new SockJS("")
+    sendBtn.addEventListener('click', () => {
+      let text = document.getElementById('textarea').value;
+      console.log(text);
+      
+      fetch('/app/api', {
+        method: 'POST',
+        body: text
+      })
+        .then(response => {return response.json()})
+        .then(myJson => {
+          console.log(myJson);
+        });
+    });
 
   </script>
 </body>

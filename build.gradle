@@ -51,4 +51,8 @@ dependencies {
   
   // Commons Fileupload
   compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+  
+  // JSON in JAVA
+  compile group: 'org.json', name: 'json', version: '20190722'
+  
 }
