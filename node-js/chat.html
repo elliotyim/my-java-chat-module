@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <textarea id="output" cols="30" rows="10"></textarea><br/>
+  <input type="text" id="input"/>
+  <input type="button" id="sendBtn" value="send"/><br/>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    let sendBtn = document.getElementById('sendBtn');
+    let socket = io();
+    
+    socket.on('receive message', (data) => {
+      let output = document.getElementById('output');
+      output.value += data + '\n';
+      console.log('서버로부터 받은 데이터: ' + data);
+    });
+    
+    sendBtn.addEventListener('click', () => {
+      let text = document.getElementById('input').value;
+      socket.emit('send message', 'test-user', text);
+    });
+
+  </script>
+</body>
+</html>

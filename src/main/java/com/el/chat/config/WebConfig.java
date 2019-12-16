@@ -14,7 +14,8 @@ public class WebConfig {
   
   @Bean
   public ViewResolver viewResolver() {
-    InternalResourceViewResolver vr = new InternalResourceViewResolver("/WEB-INF/jsp/", ".jsp");
+    InternalResourceViewResolver vr =
+        new InternalResourceViewResolver("/WEB-INF/jsp/", ".jsp");
     vr.setOrder(1);
     return vr;
   }

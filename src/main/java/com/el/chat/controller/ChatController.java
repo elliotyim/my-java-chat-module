@@ -18,6 +18,8 @@ public class ChatController {
   ChatService chatService;
   
   @GetMapping("chat")
+  public void chat() {}
+  
   public String chat (Model model, HttpServletRequest request) throws Exception {
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
     if (loginUser == null) {
