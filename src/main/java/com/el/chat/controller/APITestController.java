@@ -71,4 +71,31 @@ public class APITestController {
     return map;
   }
   
+  public void templateAPICode() throws Exception {
+    // URL 세팅 및 연결
+    URL url = new URL("http://localhost:8888/app/test2");
+    HttpURLConnection urlConnection =
+        (HttpURLConnection) url.openConnection();
+    
+    // 메소드 타입설정
+    urlConnection.setRequestMethod("POST");
+    
+    // Http 헤더설정
+    urlConnection.setRequestProperty("Content-Type", "application/json");
+    
+    // JSON String 전송
+    urlConnection.setDoOutput(true);
+    PrintWriter writer = new PrintWriter(
+        new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+    writer.write("{\"message\":\"hahaha\"}");
+    writer.flush();
+    
+    // API로 부터 받은 결과값을 JSONObject에 저장
+    InputStream in = 
+        new BufferedInputStream(urlConnection.getInputStream());
+    JSONObject json = new JSONObject(getStringFrom(in));
+    
+    System.out.println("Result JSON: " + json.getString("test"));
+  }
+  
 }

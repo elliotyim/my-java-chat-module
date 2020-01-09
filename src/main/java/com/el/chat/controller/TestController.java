@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.el.chat.domain.Member;
+
 @Controller
 @RequestMapping
 public class TestController {
@@ -47,6 +49,21 @@ public class TestController {
     Map<String, String> map = new HashMap<>();
     map.put("testKey", "testValue");
     
+    return map;
+  }
+  
+  @PostMapping("test3")
+  @ResponseBody
+  public Object test3(@RequestBody Member member) {
+    System.out.println(member.getName());
+    return member;
+  }
+  
+  @PostMapping("test4")
+  @ResponseBody
+  public Map<String, Object> test4(@RequestBody Member member) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("member", member);
     return map;
   }
 }

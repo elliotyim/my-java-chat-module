@@ -9,7 +9,14 @@
 <body>
   <input type="text" id="txt"/>
   <input type="file" id="file"/>
-  <input type="button" id="btn" value="button"/>
+  <input type="button" id="btn" value="button"/><br/>
+
+  <input type="text" id="name"/>
+  <input type="text" id="age"/>
+  <input type="button" id="btn2" value="button"/><br/>
+  
+  <input type="button" id="btn3" value="button"/><br/>
+
   
   <script>
     let button = document.getElementById('btn');
@@ -29,6 +36,44 @@
         .then(myJson => {
           console.log(myJson);
         });
+    });
+
+    let button2 = document.getElementById('btn2');
+    button2.addEventListener('click', () => {
+      let name = document.getElementById('name').value;
+      let age = document.getElementById('age').value;
+      let data = {
+          'name': name,
+          'age': Number(age)
+        };
+      fetch('app/test3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(json => console.log(json));
+    });
+    
+    let button3 = document.getElementById('btn3');
+    button3.addEventListener('click', () => {
+      let name = document.getElementById('name').value;
+      let age = document.getElementById('age').value;
+      let data = {
+          'name': name,
+          'age': Number(age)
+        };
+      fetch('app/test4', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {return response.json()})
+        .then(json => console.log(json));
     });
   </script>
 </body>
